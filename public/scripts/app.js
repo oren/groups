@@ -16,7 +16,7 @@ angular.module('groupsApp', [])
         templateUrl: '/public/views/topic.html',
         controller: 'TopicCtrl'
       })
-      .otherwise({
+      .when('/:group', {
         templateUrl: '/public/views/group.html',
         controller: 'GroupCtrl'
       });

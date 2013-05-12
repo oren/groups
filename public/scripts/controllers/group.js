@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('groupsApp')
-  .controller('GroupCtrl', function ($scope, $http) {
+  .controller('GroupCtrl', function ($scope, $http, $routeParams) {
     $scope.group = {};
     $scope.topics = [];
     
-    $http({method: 'GET', url: '/cat-videos'}).
+    $http({method: 'GET', url: $routeParams.group}).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
