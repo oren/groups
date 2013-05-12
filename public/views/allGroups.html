@@ -3,7 +3,7 @@
   <ol>
     <li ng-repeat="group in groups" href="/group/cat-videos" title="Cat Videos Group">
         <div class="module-info">
-          <a href="/cat-videos">
+          <a href="/{{group.value.permalink}}">
             <p class='group-name'>{{group.value.name}}</p>
             <p>{{group.value.title}}</p>
           </a>
