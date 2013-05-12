@@ -2,7 +2,7 @@
 
 APP="/var/www/groups"
 
-cd $APP
+cd $APP/current
 npm install
 forever stopall
 rm -r $APP/shared/logs/forever*
