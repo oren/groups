@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groups</title>
+  <meta content="Yellow Pages Groups" name="description">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" name="viewport">
+
+  <link href="/img/favicon.ico" rel="shortcut icon">
+  <link href="/rss.xml" title="RSS Feed for groups.yp.com" type="application/rss+xml" rel="alternate">
+  <link rel="stylesheet" href="public/styles/normalize.css">
+  <link rel="stylesheet" href="public/styles/main.css">
+  <link type="text/css" rel="stylesheet" href="public/styles/app.css">
+</head>
+
+<body data-tag="all" data-type="popular" ng-app="groupsApp" class='ng-cloak'>
+
+  <span ng-init="groups=<%= JSON.stringify(groups) %>"></span>
+
+  <header>
+    <h1>
+      <a href="/">Groups<img src="/public/images/logo.png"></a>
+    </h1>
+
+     <ul id="page">
+        <li class="type-b selectable selected" data-val="popular">
+        <a class="type" href="/">Recent</a>
+        </li>
+        <li class="type-b selectable" data-val="interesting">
+        <a class="type" href="/">All</a>
+        </li>
+      </ul>
+
+    <div class="clearfix"></div>
+  </header>
+
+  <div id="loading" class="">
+    <!-- <img alt="loading" src="public/images/modules_files/loading-d41d8cd98f00b204e9800998ecf8427e.gif"> -->
+  </div>
+
+  <li ng-repeat="groups in group" class='suite-result clearfix'>
+    <div class='suite-info'>
+      <span class='suite-description {{project.status}}'>
+        <span class='suite-status'></span>
+        <button ng-click="run(project.name)" type='button' class='run'>{{project.title}}</button> 
+      </span>
+    </div>
+  </li>
+
+  <div class="container" ng-view></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="public/scripts/fastclick.js"></script>
+  <script src="public/scripts/main.js"></script>
+  <script src="public/scripts/app.js"></script>
+  <script src="public/scripts/controllers/recent-replies.js"></script>
+  <script src="public/scripts/controllers/all-groups.js"></script>
+  <script src="public/scripts/controllers/group.js"></script>
+  <script src="public/scripts/controllers/topic.js"></script>
+</body>
+</html>

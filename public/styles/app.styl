@@ -1,0 +1,386 @@
+/* body, html */
+/*   height 100% */
+/*   margin 0 */
+/*   padding 0 */
+/*   line-height 1.9em */
+/*  */
+/* a */
+/*   &:link */
+/*     color #CC4444 */
+/*   &:visited */
+/*     color #AA6666 */
+
+body, input
+  font-family "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+body
+  margin 0
+  padding 0
+
+#container
+  min-height 100%
+  position relative
+
+.clearfix
+  clear both
+
+header
+  clear both
+  margin 0 auto
+  padding-left 5px
+  max-width 1105px
+  h1
+    font-family "Exo",Helvetica,sans-serif
+    margin 5px 0px -10px 0px
+    padding 0px 0px 0px 0px
+    text-align center
+    text-transform uppercase
+    img
+      margin-bottom: 10px;
+      position: relative;
+  ul
+    font-size 15pt
+    font-weight 700
+    list-style-type none
+    margin 0
+    padding 0
+    text-transform uppercase
+    li
+      display inline-block
+      margin 0
+      padding 3px 12px
+  #page
+    float left
+    .selected
+      background none repeat scroll 0 0 #F25D31
+      a
+        color #FFFFFF
+        text-shadow 1px 1px 2px #551111
+    li
+      &:hover
+        &:not(.selected)
+          a
+            color #F25D31
+  #filter
+    float right
+    margin-top -5px
+    overflow hidden
+    padding 5px 5px 0
+    background-color white
+    .by
+      color #AAAAAA
+      font-weight 400
+    li
+      cursor pointer
+      margin 0
+      padding 9px 16px
+      z-index 1
+      &:hover
+        &:not(.selected)
+          color #F25D31
+    .selected
+      border-top-left-radius 3px
+      border-top-right-radius 3px
+      box-shadow 0 0 8px #914028
+
+header a, header a:link, header a:visited
+  color #000000
+  text-decoration none
+
+#main, .group-wrap, .topics-wrap
+  margin 0 auto
+  /* min-height 1100px */
+  /* padding-bottom 150px */
+  position relative
+  max-width 1100px
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+  box-sizing border-box
+
+#modules, .group, .topics
+  box-shadow 0 2px 5px 2px #CCCCCC
+  filter none
+  opacity 1
+  position relative
+  transition opacity 0.2s ease-out 0s, transform 0.2s ease-out 0s
+  width 100%
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+  box-sizing border-box
+  &.exit
+    opacity 0
+    transform rotateY(90deg)
+    transition opacity 0.2s ease-in 0s, transform 0.2s ease-in 0s
+  &.enter
+    opacity 0
+    transform rotateY(-90deg)
+  ol
+    counter-reset item
+    list-style-type none
+    margin 0
+    padding 0
+  li
+    background none repeat scroll 0 0 #FFFFFF
+    cursor pointer
+    margin 0
+    padding 10px 0px 10px 10px
+    position relative
+    overflow hidden
+    &:hover
+      background none repeat scroll 0 0 #FFF4EF
+      .gravatar img
+        opacity 0.9
+    &:not(:first-child)
+      border-top 1px solid #DDDDDD
+    .pos
+      display inline-block
+      font-size 20pt
+      font-weight 200
+      text-align center
+      vertical-align middle
+      width 80px
+      .num
+        &:before
+          content "#"
+          font-size 13pt
+          padding-right 3px
+      .score
+        color #AAAAAA
+        font-size 9pt
+        font-weight 400
+    a
+      text-decoration none
+    .module-info
+      vertical-align middle
+      padding-right 100px
+      h3
+        font-size 18pt
+        font-weight 600
+        .by
+          color #AAAAAA
+          font-weight 400
+      p
+        font-size 16pt
+        font-weight 200
+        max-height 50px
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+        color #4F4F4F
+        &.group-name
+          color: #222222;
+          font-size: 18pt;
+          font-weight: 600;
+          margin: 0
+      .video-image
+        float right
+    .gravatar
+      bottom 0
+      position absolute
+      right 0
+      top 0
+      img
+        height 100%
+        opacity 0.7
+        width 79px
+      img.topic, img.group
+        opacity 1
+        height auto
+  .loading
+    background none repeat scroll 0 0 rgba(255, 255, 255, 0.8)
+    bottom 0
+    filter none
+    left 0
+    opacity 1
+    position absolute
+    right 0
+    top 0
+
+#modules li p, #modules li h3
+  margin 0
+
+#search
+  display none
+
+#right
+  position absolute
+  right 0
+  top 0
+  width 28.18181818181818%
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+  box-sizing border-box
+
+#ad
+  background none repeat scroll 0 0 #FFFFFF
+  border 1px solid #CCCCCC
+  border-radius 5px 5px 5px 5px
+  box-shadow 0 2px 5px 2px #CCCCCC
+  padding 10px 0
+  text-align center
+
+#tags, #search
+  border-radius 2px 2px 2px 2px
+  box-shadow 0 1px 7px #914028
+  margin-bottom 20px
+  overflow hidden
+  padding 10px
+
+#tags #searchTags, #search #searchTags, #tags #searchSite, #search #searchSite
+  padding 0 0 10px
+
+#tags #searchTags input, #search #searchTags input, #tags #searchSite input, #search #searchSite input
+  border 1px solid #F9A48B
+  color #914028
+  font-size 12pt
+  font-weight bold
+  padding 7px
+  width 272px
+
+#tags #searchTags input:focus, #search #searchTags input:focus, #tags #searchSite input:focus, #search #searchSite input:focus
+  outline 1px solid #F9A48B
+
+#tags ul, #search ul
+  list-style-type none
+  margin 0
+  max-height 605px
+  padding 0
+
+#tags ul li, #search ul li
+  border-radius 3px 3px 3px 3px
+  cursor pointer
+  display inline-block
+  font-size 12pt
+  margin 1px
+  padding 3px 6px
+
+#tags ul li a, #search ul li a
+  color inherit
+  text-decoration none
+
+#tags ul li:hover:not(.selected), #search ul li:hover:not(.selected)
+  background none repeat scroll 0 0 #FCB08A
+  text-shadow 1px 1px 2px #FFFFFF
+
+#tags ul li.selected, #search ul li.selected
+  background none repeat scroll 0 0 #F25D31
+  color #FFFFFF
+  text-shadow 1px 1px 2px #551111
+
+#moduleInfo
+  background none repeat scroll 0 0 #FFFFFF
+  border-radius 1px 1px 1px 1px
+  box-shadow 0 2px 5px 2px #CCCCCC
+  margin-top 12px
+  width 730px
+  div#top
+    background -moz-linear-gradient(center top , #888888 0%, #555555 90%, #444444 100%) repeat scroll 0 0 transparent
+    border-bottom 1px solid #444444
+    color #FFFFFF
+    padding 12px 20px
+    text-shadow 1px 1px #000000
+    h2
+      font-size 22pt
+      margin-bottom 10px
+      margin-top 0
+      .v
+        color #DDDDDD
+        font-weight 400
+        padding-left 10px
+    div
+      &.owner
+        background none repeat scroll 0 0 #FFFFFF
+        border 1px solid #EEEEEE
+        float right
+        line-height 0
+        margin 0 0 15px 15px
+        padding 4px
+  div#bottom
+    background -moz-linear-gradient(center top , #FAFAFA 0%, #FFFFFF 100px) repeat scroll 0 0 transparent
+    padding 12px 20px
+    p
+      &.desc
+        font-size 13pt
+        margin 5px 0
+      &.link
+        margin 0
+      &.npmlink
+        margin 15px 20px
+      &.npm
+        background none repeat scroll 0 0 #EEEEEE
+        font-family Monaco,Consolas,monospace
+        font-size 10pt
+        margin 25px 0
+        padding 3px 10px
+        width 400px
+        .shell
+          color #999999
+    h3
+      &.tags
+        margin 5px 0
+      &.npmlink
+        margin 25px 0 5px
+    section
+      &.github
+        margin 2px 20px
+    ul
+      &.tags
+        margin 10px 20px
+        padding 0
+        li
+          &.tag
+            background none repeat scroll 0 0 #FEDED5
+            border-radius 4px 4px 4px 4px
+            display inline-block
+            margin 3px 5px
+            padding 2px 4px
+
+footer
+  background -moz-linear-gradient(center top , rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.5) 100%) repeat scroll 0 0%, url("https://d1g0cckr7vxu10.cloudfront.net/img/lil_fiber-d41d8cd98f00b204e9800998ecf8427e.png") repeat scroll 0 0 transparent
+  border-top 1px solid #AAAAAA
+  bottom 0
+  box-shadow 0 0 40px rgba(0, 0, 0, 0.2)
+  height 60px
+  left 0
+  position absolute
+  right 0
+  img
+    vertical-align middle
+  p
+    font-size 11px
+    font-weight bold
+    margin 9px auto
+    width 1100px
+  .tm
+    color #444444
+    text-shadow 1px 1px 1px #EEEEEE
+  .links
+    color #222222
+    text-shadow 1px 1px 1px #CCCCCC
+
+footer a, footer a:link, footer a:active, footer a:visited
+  color #111166
+
+#loading
+  left 50%
+  margin-left -200px
+  opacity 0
+  position fixed
+  text-align left
+  top 40%
+  transition opacity 0.2s ease-in-out 0.4s
+  width 400px
+  &.visible
+    filter none
+    opacity 1
+
+/* ipad portrait */
+@media (max-width: 768px) 
+  .topics
+    img
+      max-width: 500px
+
+@media (max-width: 480px) 
+  .topics
+    img
+      max-width: 300px
