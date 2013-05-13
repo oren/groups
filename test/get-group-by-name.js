@@ -20,7 +20,7 @@ test('get group by name', function (t) {
         return console.error('error', err);
       } 
 
-      t.equal(group.value.name, 'Cat Videos');
+      t.equal(group.name, 'Cat Videos');
       destroyDB();
     });
   }
