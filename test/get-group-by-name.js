@@ -8,22 +8,14 @@ var environment = process.env.NODE_ENV || 'test';
 var config = require('../config/' + environment + '.js');
 var db = config.db
 var insertGroup = db.get('insertGroup');
-var getGroup = db.get('getGroup');
+var getGroupByName = db.get('get-group-by-name');
 var destroyDB = db.get('destroyDB');
 
-test('get all groups', function (t) {
-  t.plan(1);  // you have to declare how many assertions are in your test
-
-  function compare(a, b) {
-    if (a.value.name < b.value.name) {
-       return -1;
-    } else {
-       return 1;
-    };
-  }
+test('get group by name', function (t) {
+  t.plan(1); 
 
   function getGroup(name) {
-    getGroup(name, function(err, group) {
+    getGroupByName(name, function(err, group) {
       if (err) {
         return console.error('error', err);
       } 
