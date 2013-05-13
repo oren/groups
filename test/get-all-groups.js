@@ -25,10 +25,9 @@ test('get all groups', function (t) {
   function getGroups() {
     getAllGroups(function(err, groups) {
       if (err) {
-        return console.log('error', err);
+        return console.error('error', err);
       } 
 
-      console.log('groups', groups);
       t.equal(groups[0].value.name, 'Cat Videos');  // truthy
       destroyDB();
     });
@@ -36,12 +35,12 @@ test('get all groups', function (t) {
 
   insertGroup('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, group) {
     if (err) {
-      return console.log('error', err);
+      return console.error('error', err);
     } 
 
     insertGroup('Cat Videos2', 'EVERYONE LOVES CATS2', '1', function(err, group) {
       if (err) {
-        return console.log('error', err);
+        return console.error('error', err);
       } 
     });
 

@@ -19,7 +19,7 @@ test('insert topic', function (t) {
   function getOneTopic(group, topic) {
     getTopic(group + '!' + topic, function(err, result) {
       if (err) {
-        return console.log('error', err);
+        return console.error('error', err);
       } 
 
       destroyDB();
@@ -29,12 +29,12 @@ test('insert topic', function (t) {
 
   insertGroup('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, group) {
     if (err) {
-      return console.log('error', err);
+      return console.error('error', err);
     } 
 
     insertTopic(group, 'dancing cats', 'wow, cool kitten!', '1', function(err, result) {
       if (err) {
-        return console.log('error', err);
+        return console.error('error', err);
       } 
 
       getOneTopic(group, result.topicId);
