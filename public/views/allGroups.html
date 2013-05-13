@@ -1,18 +1,16 @@
 <section id="main">
   <section id="modules" class="">
   <ol>
-    <li ng-repeat="group in groups" href="/group/cat-videos" title="Cat Videos Group">
+    <li ng-repeat="group in groups" href="/{{group.value.permalink}}" title="Cat Videos Group">
+      <a href="/{{group.value.permalink}}">
         <div class="module-info">
-          <a href="/{{group.value.permalink}}">
-            <p class='group-name'>{{group.value.name}}</p>
-            <p>{{group.value.title}}</p>
-          </a>
+          <p class='group-name'>{{group.value.name}}</p>
+          <p>{{group.value.title}}</p>
         </div>
         <div class="gravatar">
-          <a href="/cat-videos">
-            <img src="public/images/{{group.value.user}}.jpg">
-          </a>
+          <img src="public/images/{{group.value.user}}.jpg">
         </div>
+      </a>
     </li>
   </ol>
   </section>

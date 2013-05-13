@@ -22,14 +22,14 @@ header a,header a:link,header a:visited{color:#000;text-decoration:none}
 #modules.exit,.group.exit,.topics.exit{opacity:0;transform:rotateY(90deg);transition:opacity .2s ease-in 0,transform .2s ease-in 0}
 #modules.enter,.group.enter,.topics.enter{opacity:0;transform:rotateY(-90deg)}
 #modules ol,.group ol,.topics ol{counter-reset:item;list-style-type:none;margin:0;padding:0}
-#modules li,.group li,.topics li{background:none repeat scroll 0 0 #fff;cursor:pointer;margin:0;padding:10px 0 10px 10px;position:relative;overflow:hidden;}
+#modules li,.group li,.topics li{background:none repeat scroll 0 0 #fff;cursor:pointer;margin:0;position:relative;overflow:hidden;}
 #modules li:hover,.group li:hover,.topics li:hover{background:none repeat scroll 0 0 #fff4ef;}
 #modules li:hover .gravatar img,.group li:hover .gravatar img,.topics li:hover .gravatar img{opacity:.9}
 #modules li:not(:first-child),.group li:not(:first-child),.topics li:not(:first-child){border-top:1px solid #ddd}
 #modules li .pos,.group li .pos,.topics li .pos{display:inline-block;font-size:20pt;font-weight:200;text-align:center;vertical-align:middle;width:80px;}
 #modules li .pos .num:before,.group li .pos .num:before,.topics li .pos .num:before{content:"#";font-size:13pt;padding-right:3px}
 #modules li .pos .score,.group li .pos .score,.topics li .pos .score{color:#aaa;font-size:9pt;font-weight:400}
-#modules li a,.group li a,.topics li a{text-decoration:none}
+#modules li a,.group li a,.topics li a{display:block;text-decoration:none;padding:10px 0 10px 10px}
 #modules li .module-info,.group li .module-info,.topics li .module-info{vertical-align:middle;padding-right:100px;}
 #modules li .module-info h3,.group li .module-info h3,.topics li .module-info h3{font-size:18pt;font-weight:600;}
 #modules li .module-info h3 .by,.group li .module-info h3 .by,.topics li .module-info h3 .by{color:#aaa;font-weight:400}
