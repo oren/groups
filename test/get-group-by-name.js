@@ -39,3 +39,13 @@ test('get group by name', function (t) {
     getGroup('cat-videos');
   });
 });
+
+test('get group by name where name does not exist', function (t) {
+  t.plan(1); 
+
+  getGroupByName('foo', function(err, group) {
+    if (err) {
+      t.notOk(group, 'should return null');
+    } 
+  });
+});
