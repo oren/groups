@@ -27,7 +27,8 @@ module.exports = function (dbPath) {
   var subs = {
     groups: db.sublevel('groups'),
     topics: db.sublevel('topics'),
-    replies: db.sublevel('replies')
+    replies: db.sublevel('replies'),
+    groupNames: db.sublevel('groupNames')
   };
 
  

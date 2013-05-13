@@ -15,8 +15,12 @@ module.exports = function (db, subs) {
     now = timestamp();
     subs.groups.put(now, {name: name, permalink: doDashes(name), title: title, user: user}, function (err) {
       if (err) {return cb(err) };
-      
-      cb(null, now)
+
+      subs.groupNames.put(doDashes(name), now, function(){
+        if (err) {return cb(err) };
+
+        cb(null, now)
+      });
     });
   };
 }

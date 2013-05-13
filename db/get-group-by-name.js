@@ -1,30 +1,19 @@
 "use strict";
 
-// get all groups, alphabetically ordered
+// if group name found - return it. 
+// if not return null
 
 module.exports = function (db, subs) {
   return function(name, cb){
+    subs.groupNames.get(name, function(err, group) {
+      if (err) {
+        cb && cb(err, null) 
+        return;
+      };
 
-    var groups = [];
-
-    function getGroups() {
-      // to get a stream of all groups in reverse alphabetical order
-      // subs.groups.createReadStream({start: '~', end: '0', reverse: 'true' })
-      subs.groups.createReadStream({})
-       .on('data', function (data) {
-         // console.log('data', data);
-          groups.push({id: data.key, value: data.value});
-        })
-        .on('error', function (err) {
-          console.log('error in createReadStream', err)
-          cb(err);
-        })
-        .on('close', function () {
-        })
-        .on('end', function () {
-          cb(null, {value: {name: 'Cat Videos'}});
-        })
-    }
-    getGroups();
-  };
+      console.log('group', group);
+      
+      cb && cb(null, {value: {name: 'Cat Videos'}});
+    });
+  }
 }
