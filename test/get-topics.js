@@ -9,10 +9,10 @@ var config = require('../config/' + environment + '.js');
 var db = config.db
 var insertGroup = db.get('insertGroup');
 var insertTopic = db.get('insertTopic');
-var getTopics = db.get('getTopics');
+var getTopics = db.get('get-topics');
 var destroyDB = db.get('destroyDB');
 
-test('get topics of a groups', function (t) {
+test('get topics of a groups by groupId', function (t) {
   t.plan(1);
 
   function getTopicsOfGroup(groupId) {
