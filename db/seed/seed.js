@@ -4,8 +4,8 @@ var environment = process.env.NODE_ENV || 'development';
 var config = require('../../config/' + environment + '.js');
 var db = config.db
 
-var insert = db.get('insertGroup');
-var insertTopic = db.get('insertTopic');
+var insert = db.get('insert-group');
+var insertTopic = db.get('insert-topic');
 
 insert('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, groupId) {
   if (err) {
