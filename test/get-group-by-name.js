@@ -7,9 +7,9 @@ var levelup = require('levelup')
 var environment = process.env.NODE_ENV || 'test';
 var config = require('../config/' + environment + '.js');
 var db = config.db
-var insertGroup = db.get('insertGroup');
+var insertGroup = db.get('insert-group');
 var getGroupByName = db.get('get-group-by-name');
-var destroyDB = db.get('destroyDB');
+var destroyDB = db.get('destroy-db');
 
 test('get group by name', function (t) {
   t.plan(1); 

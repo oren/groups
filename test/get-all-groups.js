@@ -7,9 +7,9 @@ var levelup = require('levelup')
 var environment = process.env.NODE_ENV || 'test';
 var config = require('../config/' + environment + '.js');
 var db = config.db
-var insertGroup = db.get('insertGroup');
-var getAllGroups = db.get('getAllGroups');
-var destroyDB = db.get('destroyDB');
+var insertGroup = db.get('insert-group');
+var getAllGroups = db.get('get-all-groups');
+var destroyDB = db.get('destroy-db');
 
 test('get all groups', function (t) {
   t.plan(1);  // you have to declare how many assertions are in your test
