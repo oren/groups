@@ -20,6 +20,7 @@ test('get group by name', function (t) {
         return console.error('error', err);
       } 
 
+      console.log('group', group);
       t.equal(group.name, 'Cat Videos2');
       destroyDB();
     });

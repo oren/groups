@@ -27,6 +27,7 @@ var db = config.db
 var getRecentReplies = db.get('getRecentReplies');
 var getAllGroups = db.get('get-all-groups');
 var getGroupByName = db.get('get-group-by-name');
+var getTopics = db.get('get-topics');
 
 process.title = 'groups website';
 
@@ -81,18 +82,15 @@ http.createServer(function (req, res) {
           return console.error('error', err);
         } 
 
-        // getTopics(group.id , function(err, group) {
-        //   if (err) {
-        //     res.end(null);
-        //     return console.error('error', err);
-        //   } 
+        getTopics(group.id , function(err, topics) {
+          if (err) {
+            res.end(null);
+            return console.error('error', err);
+          } 
 
-        //   console.log('group', group);
-        //   res.end(JSON.stringify(group));
-        // });
-
-        console.log('group', group);
-        res.end(JSON.stringify(group));
+          console.log('topics', {group: group, topics: topics});
+          res.end(JSON.stringify({group: group, topics: topics}));
+        });
       });
 
   };

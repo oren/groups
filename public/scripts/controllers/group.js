@@ -7,15 +7,13 @@ angular.module('groupsApp')
     
     $http({method: 'GET', url: $routeParams.group}).
       success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log('success', data);
+        console.log('data', data);
 
-        $scope.group = { value: {name: data.name, title: data.title} };
-        $scope.topics = [
-          { value: { content: 'jumping cat', user: null } }, 
-          {value: { content: 'a cat riding backward on a pig - must see video!', user: null }}
-        ];
+        $scope.group = data.group; //{ value: {name: data.name, title: data.title} };
+        $scope.topics = data.topics; //[
+          //{ value: { content: 'jumping cat', user: null } }, 
+          //{value: { content: 'a cat riding backward on a pig - must see video!', user: null }}
+        //];
       }).
       error(function(data, status, headers, config) {
       // called asynchronously if an error occurs

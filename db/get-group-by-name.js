@@ -17,6 +17,7 @@ module.exports = function (db, subs) {
           return;
         };
       
+        group.id = groupId;
         cb && cb(null, group);
       });
     })
