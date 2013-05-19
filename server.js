@@ -75,8 +75,7 @@ http.createServer(function (req, res) {
     // if not, return nil
       console.log('looking for ', path.basename(req.url));
 
-      // getGroupByName(path.basename(req.url) , function(err, group) {
-      getGroupByName('foo' , function(err, group) {
+      getGroupByName(path.basename(req.url) , function(err, group) {
         if (err) {
           res.end(null);
           return console.error('error', err);

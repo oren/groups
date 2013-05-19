@@ -1,7 +1,7 @@
 "use strict";
 
 // npm package
-var timestamp = require('monotonic-timestamp')
+var timestamp = require('monotonic-timestamp');
 
 var now = null;
 
@@ -13,14 +13,17 @@ function doDashes(str) {
 module.exports = function (db, subs) {
   return function(name, title, user, cb){
     now = timestamp();
-    subs.groups.put(now, {name: name, permalink: doDashes(name), title: title, user: user}, function (err) {
-      if (err) {return cb(err) };
 
-      subs.groupNames.put(doDashes(name), now, function(){
+    (function (now) {
+      subs.groups.put(now, {name: name, permalink: doDashes(name), title: title, user: user}, function (err) {
         if (err) {return cb(err) };
 
-        cb(null, now)
+        subs.groupNames.put(doDashes(name), now, function(){
+          if (err) {return cb(err) };
+
+          cb(null, now)
+        });
       });
-    });
+    })(now)
   };
 }
