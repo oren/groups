@@ -11,6 +11,8 @@ var ejs = require('ejs');
 var Templar = require('templar');
 // var router = require("./router.js");
 
+
+
 var templarOptions = { engine: ejs, folder: './templates' };
 
 // preload it.  Otherwise, the first request is slow, because
@@ -20,8 +22,11 @@ Templar.loadFolder('./templates')
 var environment = process.env.NODE_ENV || 'development';
 var config = require('./config/' + environment + '.js');
 var db = config.db
+
+// my modules
 var getRecentReplies = db.get('getRecentReplies');
 var getAllGroups = db.get('getAllGroups');
+var getGroupByName = db.get('get-group-by-name');
 
 process.title = 'groups website';
 
@@ -38,6 +43,7 @@ http.createServer(function (req, res) {
   // if (!route) return res.error(404)
 
   // route.fn(req, res, config)
+  console.log('path.extname', path.extname(req.url));
 
   if (req.url === '/') {
     // getRecentReplies(function(err, groups) {
@@ -50,7 +56,7 @@ http.createServer(function (req, res) {
       res.template('index.ejs', { groups: groups })
     });
 
-  } else {
+  } else if(path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html') {
     res.writeHead(200);
     var file = req.url.substr(1);
 
@@ -64,6 +70,22 @@ http.createServer(function (req, res) {
       console.log('error', err);
       res.end();
     });
+  } else {
+    // if group exist - return array of topics
+    // if not, return nil
+      console.log('looking for ', path.basename(req.url));
+
+      // getGroupByName(path.basename(req.url) , function(err, group) {
+      getGroupByName('foo' , function(err, group) {
+        if (err) {
+          res.end(null);
+          return console.error('error', err);
+        } 
+
+        console.log('group', group);
+        res.end(JSON.stringify(group));
+      });
+
   };
 }).listen(config.port);
 

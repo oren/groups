@@ -20,7 +20,7 @@ test('get group by name', function (t) {
         return console.error('error', err);
       } 
 
-      t.equal(group.name, 'Cat Videos');
+      t.equal(group.name, 'Cat Videos2');
       destroyDB();
     });
   }
@@ -34,9 +34,9 @@ test('get group by name', function (t) {
       if (err) {
         return console.error('error', err);
       } 
-    });
 
-    getGroup('cat-videos');
+      getGroup('cat-videos2');
+    });
   });
 });
 
