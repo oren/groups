@@ -7,10 +7,10 @@ var levelup = require('levelup')
 var environment = process.env.NODE_ENV || 'test';
 var config = require('../config/' + environment + '.js');
 var db = config.db
-var insertGroup = db.get('insertGroup');
-var insertTopic = db.get('insertTopic');
+var insertGroup = db.get('insert-group');
+var insertTopic = db.get('insert-topic');
 var getTopics = db.get('get-topics');
-var destroyDB = db.get('destroyDB');
+var destroyDB = db.get('destroy-db');
 
 test('get topics of a groups by groupId', function (t) {
   t.plan(1);
