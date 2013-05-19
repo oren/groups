@@ -25,7 +25,7 @@ var db = config.db
 
 // my modules
 var getRecentReplies = db.get('getRecentReplies');
-var getAllGroups = db.get('getAllGroups');
+var getAllGroups = db.get('get-all-groups');
 var getGroupByName = db.get('get-group-by-name');
 
 process.title = 'groups website';
@@ -80,6 +80,16 @@ http.createServer(function (req, res) {
           res.end(null);
           return console.error('error', err);
         } 
+
+        // getTopics(group.id , function(err, group) {
+        //   if (err) {
+        //     res.end(null);
+        //     return console.error('error', err);
+        //   } 
+
+        //   console.log('group', group);
+        //   res.end(JSON.stringify(group));
+        // });
 
         console.log('group', group);
         res.end(JSON.stringify(group));
