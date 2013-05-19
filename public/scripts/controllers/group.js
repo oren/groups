@@ -11,7 +11,7 @@ angular.module('groupsApp')
         // when the response is available
         console.log('success', data);
 
-        $scope.group = { value: {name: 'Cat Videos', title: 'EVERYONE LOVES CAT'} };
+        $scope.group = { value: {name: data.name, title: data.title} };
         $scope.topics = [
           { value: { content: 'jumping cat', user: null } }, 
           {value: { content: 'a cat riding backward on a pig - must see video!', user: null }}

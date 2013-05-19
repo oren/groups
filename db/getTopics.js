@@ -1,6 +1,8 @@
 "use strict";
 
 // get all topics of a group, reverse chronologically ordered
+// parameters: 
+// groupId and callback
 
 module.exports = function (db, subs) {
   return function(groupId, cb) {
