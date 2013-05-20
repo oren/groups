@@ -7,8 +7,6 @@ angular.module('groupsApp')
 
     $http({method: 'GET', url: $routeParams.group + '?format=application/json'}).
       success(function(data, status, headers, config) {
-        console.log('data', data);
-
         $scope.group = data.group; //{ value: {name: data.name, title: data.title} };
         $scope.topics = data.topics; //[
           //{ value: { content: 'jumping cat', user: null } }, 
@@ -16,8 +14,6 @@ angular.module('groupsApp')
         //];
       }).
       error(function(data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-        console.log('error', data);
+        console.error('error', data);
       });
   });

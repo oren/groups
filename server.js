@@ -38,8 +38,6 @@ http.createServer(function (req, res) {
   var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
   var query = parsed.query;
 
-  console.log('req.url', req.url);
-
   // var route = router.match(normalPathname);
   // if (!route) return res.error(404)
 

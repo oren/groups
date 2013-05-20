@@ -12,7 +12,6 @@ module.exports = function (db, subs) {
     function getTopics() {
       subs.topics.createReadStream({start: groupId + '!~', end: groupId, reverse: 'true' })
        .on('data', function (data) {
-          console.log('data', data);
           topic = {};
           topic['id'] = data.key;
           topic['title'] = data.value.title;

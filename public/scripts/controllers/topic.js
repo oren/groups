@@ -7,10 +7,6 @@ angular.module('groupsApp')
     
     $http({method: 'GET', url: '/cat-videos'}).
       success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log('success', data);
-
         $scope.group = { value: {name: 'Cat Videos', title: 'EVERYONE LOVES CAT'} };
         $scope.topics = [
           { value: { content: 'jumping cat', user: null } }, 
@@ -18,8 +14,6 @@ angular.module('groupsApp')
         ];
       }).
       error(function(data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-        console.log('error', data);
+        console.error('error', data);
       });
   });
