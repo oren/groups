@@ -12,7 +12,7 @@ angular.module('groupsApp', [])
         templateUrl: '/public/views/recentReplies.html',
         controller: 'RecentRepliesCtrl'
       })
-      .when('/topic/:topicId', {
+      .when('/:group/:topic', {
         templateUrl: '/public/views/topic.html',
         controller: 'TopicCtrl'
       })

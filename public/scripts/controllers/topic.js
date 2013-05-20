@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('groupsApp')
-  .controller('TopicCtrl', function ($scope, $http) {
+  .controller('TopicCtrl', function ($scope, $http, $routeParams) {
     $scope.group = {};
     $scope.topics = [];
+
+    console.log('group', $routeParams.group);
+    console.log('topic', $routeParams.topic);
     
-    $http({method: 'GET', url: '/cat-videos'}).
+    $http({method: 'GET', url: '/' + $routeParams.group + '/' + $routeParams.topic + '?format=application/json'}).
       success(function(data, status, headers, config) {
         $scope.group = { value: {name: 'Cat Videos', title: 'EVERYONE LOVES CAT'} };
         $scope.topics = [

@@ -38,6 +38,7 @@ http.createServer(function (req, res) {
   var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
   var query = parsed.query;
 
+
   // var route = router.match(normalPathname);
   // if (!route) return res.error(404)
 
@@ -79,6 +80,8 @@ http.createServer(function (req, res) {
 
       return;
     };
+
+    console.log('parsed', parsed);
 
     // if group exist - return array of topics
     // if not, return nil
