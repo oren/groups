@@ -1,24 +1,18 @@
 'use strict';
 
 angular.module('groupsApp')
-  .controller('AllGroupsCtrl', function ($scope, $http) {
-    // $scope.groups = [];
-    
-    // $http({method: 'GET', url: '/groups'}).
-    //   success(function(data, status, headers, config) {
-    //     // this callback will be called asynchronously
-    //     // when the response is available
-    //     console.log('success', data);
+  .controller('AllGroupsCtrl', function ($scope, $http, $routeParams) {
+    $scope.group = {};
 
-    //     // $scope.groups = [
-    //     //   { value: { name: 'TGIF', title: 'friday hair', user: null } }, 
-    //     //   {value: { name: 'TGIF', title: 'friday hair', user: null }}
-    //     // ];
-    //   }).
-    //   error(function(data, status, headers, config) {
-    //   // called asynchronously if an error occurs
-    //   // or server returns response with an error status.
-    //     console.log('error', data);
-    //   });
+    $http({method: 'GET', url: '/?format=application/json'}).
+      success(function(groups, status, headers, config) {
+        console.log('data', groups);
 
+        $scope.groups = groups; //{ value: {name: data.name, title: data.title} };
+      }).
+      error(function(data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+        console.log('error', data);
+      });
   });

@@ -38,6 +38,8 @@ http.createServer(function (req, res) {
   var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
   var query = parsed.query;
 
+  console.log('req.url', req.url);
+
   // var route = router.match(normalPathname);
   // if (!route) return res.error(404)
 
@@ -56,6 +58,7 @@ http.createServer(function (req, res) {
     });
     reader.on('error', function(err) {
       console.error('error', err);
+      // res.writeHead(404);
       res.end();
     });
 
@@ -67,18 +70,35 @@ http.createServer(function (req, res) {
   // if group exist - return array of topics
   // if not, return nil
   if (query && query.format && query.format === 'application/json') {
+    if (normalPathName === '/') {
+      getAllGroups(function(err, groups) {
+        if (err) {
+          // res.writeHead(404);
+          return console.error('error in getAllGroups', err);
+        }; 
+
+        res.writeHead(200);
+        res.end(JSON.stringify(groups));
+      })
+
+      return;
+    };
+
     getGroupByName(normalPathName.substr(1) , function(err, group) {
       if (err) {
+        // res.writeHead(404);
         res.end(null);
         return console.error('error', err);
       } 
 
       getTopics(group.id, function(err, topics) {
         if (err) {
+          // res.writeHead(404);
           res.end(null);
           return console.error('error', err);
         } 
 
+        res.writeHead(200);
         res.end(JSON.stringify({group: group, topics: topics}));
       });
     });
@@ -86,14 +106,22 @@ http.createServer(function (req, res) {
     return;
   }
 
-  // non ajox request - '/' or '/group-name'
-  getAllGroups(function(err, groups) {
-    if (err) {
-      return console.error('error in getAllGroups', err);
-    } 
+  // non ajox request for home - '/'
+  if (normalPathName === '/') {
+    getAllGroups(function(err, groups) {
+      if (err) {
+        // res.writeHead(404);
+        return console.error('error in getAllGroups', err);
+      } 
 
-    res.template('index.ejs', { groups: groups })
-  });
+      res.template('index.ejs', { groups: groups })
+      return;
+    });
+  } else {
+    // non ajox for a group - '/group-name'
+    res.template('index.ejs', { groups: [] })
+  }
+
 }).listen(config.port);
 
 console.log('Groups server running in ' + environment  + ' environment on port ' + config.port);
