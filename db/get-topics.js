@@ -15,6 +15,7 @@ module.exports = function (db, subs) {
           topic = {};
           topic['id'] = data.key;
           topic['title'] = data.value.title;
+          topic['permalink'] = data.value.permalink;
           topic['user'] = data.value.user;
 
           topics.push(topic);

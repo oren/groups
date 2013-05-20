@@ -1,8 +1,8 @@
 <section class="group-wrap">
   <section class="group" class="">
   <ol>
-    <li href="/group/cat-videos" title="Cat Videos Group">
-      <a href="/cat-videos">
+    <li>
+      <a href="/{{group.permalink}}">
         <div class="module-info">
           <p class='group-name'>{{group.name}} Group</p>
           <p>{{group.title}}</p>
@@ -18,12 +18,11 @@
 
 <br />
 
-
 <section class="topics-wrap">
   <section class="topics" class="">
   <ol>
-    <li ng-repeat="topic in topics" href="/group/cat-videos" title="">
-      <a href="/cat-videos">
+    <li ng-repeat="topic in topics">
+      <a href="/{{group.permalink}}/{{topic.permalink}}">
         <div class="module-info">
           <p>{{topic.title}}</p>
         </div>
