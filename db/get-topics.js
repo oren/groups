@@ -7,17 +7,20 @@
 module.exports = function (db, subs) {
   return function(groupId, cb) {
     var topics = [];
+    var topic = {};
 
     function getTopics() {
-      // to get a stream of all groups in reverse alphabetical order
-      // subs.groups.createReadStream({start: '~', end: '0', reverse: 'true' })
-      subs.topics.createReadStream({})
+      subs.topics.createReadStream({start: groupId + '!~', end: groupId, reverse: 'true' })
        .on('data', function (data) {
-         // console.log('data', data);
-          topics.push({id: data.key, value: data.value});
+          topic = {};
+          topic['id'] = data.key;
+          topic['title'] = data.value.title;
+          topic['user'] = data.value.user;
+
+          topics.push(topic);
         })
         .on('error', function (err) {
-          console.log('error in createReadStream', err)
+          console.error('error in createReadStream', err)
           cb(err);
         })
         .on('close', function () {
@@ -25,7 +28,7 @@ module.exports = function (db, subs) {
         .on('end', function () {
           cb(null, topics);
         })
-    }
+    };
 
     getTopics();
   };
