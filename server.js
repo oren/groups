@@ -82,13 +82,13 @@ http.createServer(function (req, res) {
           return console.error('error', err);
         } 
 
-        getTopics(group.id , function(err, topics) {
+        getTopics(group.id, function(err, topics) {
           if (err) {
             res.end(null);
             return console.error('error', err);
           } 
 
-          console.log('topics', {group: group, topics: topics});
+          console.log('topics and groups', {group: group, topics: topics});
           res.end(JSON.stringify({group: group, topics: topics}));
         });
       });

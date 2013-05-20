@@ -21,47 +21,16 @@
 <section class="topics-wrap">
   <section class="topics" class="">
   <ol>
-    <li title="">
-      <a href="/topic/crazy-cat">
+    <li ng-repeat="topic in topics" href="/group/cat-videos" title="">
+      <a href="/cat-videos">
         <div class="module-info">
-          <p>crazy cats</p>
+          <p>{{topic.title}}</p>
         </div>
         <div class="gravatar">
-          <img class='group' src="public/images/10.jpg">
-        </div>
-      </a>
-    </li>
-    <li title="">
-      <a href="/topic/cat-videos">
-        <div class="module-info">
-          <p>dancing cat</p>
-        </div>
-        <div class="gravatar">
-          <img class='group' src="public/images/12.jpg">
+          <img src="public/images/10.jpg">
         </div>
       </a>
     </li>
   </ol>
   </section>
 </section>
-
-
-
-<!-- <section class="topics-wrap"> -->
-<!--   <section class="topics" class=""> -->
-<!--   <ol> -->
-<!--     <li ng-repeat="topic in topics" href="/group/cat-videos" title=""> -->
-<!--       <a href="/cat-videos"> -->
-<!--         <div class="module-info"> -->
-<!--           <p>{{topic.value.content}}</p> -->
-<!--         </div> -->
-<!--         <div class="gravatar"> -->
-<!--           <img src="public/images/10.jpg"> -->
-<!--         </div> -->
-<!--       </a> -->
-<!--     </li> -->
-<!--   </ol> -->
-<!--   </section> -->
-<!-- </section> -->
-<!--  -->
-<!--  -->

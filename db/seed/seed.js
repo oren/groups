@@ -25,10 +25,22 @@ insert('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, groupId) {
   });
 });
 
-insert('Pro Select', 'Y U NO DONE?!', '6', function(err, group) {
+insert('Pro Select', 'Y U NO DONE?!', '6', function(err, groupId) {
   if (err) {
     return console.log('error', err);
   }
+
+  insertTopic(groupId, 'final stepes', 'lets write down the final steps', '2', function(err, result) {
+    if (err) {
+      return console.log('error', err);
+    } 
+
+    insertTopic(groupId, 'release plan', 'ok. we are almost done', '3', function(err, result) {
+      if (err) {
+        return console.log('error', err);
+      } 
+    });
+  });
 });
 
 insert('Happy Hour', 'events you should not miss!', '2', function(err, group) {
