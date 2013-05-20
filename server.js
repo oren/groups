@@ -73,7 +73,7 @@ http.createServer(function (req, res) {
           return console.error('error in getAllGroups', err);
         }; 
 
-        res.writeHead(200);
+        res.writeHead(200, {'Content-Location': req.headers.host + '/all.json' });
         res.end(JSON.stringify(groups));
       })
 
@@ -96,7 +96,7 @@ http.createServer(function (req, res) {
           return console.error('error', err);
         } 
 
-        res.writeHead(200);
+        res.writeHead(200, {'Content-Location': req.headers.host + normalPathName + '.json' });
         res.end(JSON.stringify({group: group, topics: topics}));
       });
     });
