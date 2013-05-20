@@ -63,11 +63,9 @@ http.createServer(function (req, res) {
     return;
   } 
 
-  // ajax request to a group
-  //
-  // if group exist - return array of topics
-  // if not, return nil
+  // ajax request to root ('/') or to a group ('/cat-videos')
   if (query && query.format && query.format === 'application/json') {
+    //  return all groups
     if (normalPathName === '/') {
       getAllGroups(function(err, groups) {
         if (err) {
@@ -82,6 +80,8 @@ http.createServer(function (req, res) {
       return;
     };
 
+    // if group exist - return array of topics
+    // if not, return nil
     getGroupByName(normalPathName.substr(1) , function(err, group) {
       if (err) {
         // res.writeHead(404);
