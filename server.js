@@ -43,17 +43,8 @@ http.createServer(function (req, res) {
 
   // route.fn(req, res, config)
 
-  if (req.url === '/') {
-    // getRecentReplies(function(err, groups) {
-    getAllGroups(function(err, groups) {
-      if (err) {
-        return console.error('error in getAllGroups', err);
-      } 
-
-      res.template('index.ejs', { groups: groups })
-    });
-
-  } else if(path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html') {
+  // assets
+  if(path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html') {
     res.writeHead(200);
     var file = req.url.substr(1);
 
@@ -67,33 +58,42 @@ http.createServer(function (req, res) {
       console.error('error', err);
       res.end();
     });
-  } else {
-    // if group exist - return array of topics
-    // if not, return nil
-    
-    if (query && query.format && query.format === 'application/json') {
-      getGroupByName(normalPathName.substr(1) , function(err, group) {
+
+    return;
+  } 
+
+  // ajax request to a group
+  //
+  // if group exist - return array of topics
+  // if not, return nil
+  if (query && query.format && query.format === 'application/json') {
+    getGroupByName(normalPathName.substr(1) , function(err, group) {
+      if (err) {
+        res.end(null);
+        return console.error('error', err);
+      } 
+
+      getTopics(group.id, function(err, topics) {
         if (err) {
           res.end(null);
           return console.error('error', err);
         } 
 
-        getTopics(group.id, function(err, topics) {
-          if (err) {
-            res.end(null);
-            return console.error('error', err);
-          } 
-
-          res.end(JSON.stringify({group: group, topics: topics}));
-        });
+        res.end(JSON.stringify({group: group, topics: topics}));
       });
+    });
 
-      return;
-    }
-  
-    console.log('if i am here it means the request is not ajax');
+    return;
+  }
 
-  };
+  // non ajox request - '/' or '/group-name'
+  getAllGroups(function(err, groups) {
+    if (err) {
+      return console.error('error in getAllGroups', err);
+    } 
+
+    res.template('index.ejs', { groups: groups })
+  });
 }).listen(config.port);
 
 console.log('Groups server running in ' + environment  + ' environment on port ' + config.port);
