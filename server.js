@@ -11,8 +11,6 @@ var ejs = require('ejs');
 var Templar = require('templar');
 // var router = require("./router.js");
 
-
-
 var templarOptions = { engine: ejs, folder: './templates' };
 
 // preload it.  Otherwise, the first request is slow, because
@@ -32,28 +30,26 @@ var getTopics = db.get('get-topics');
 process.title = 'groups website';
 
 http.createServer(function (req, res) {
-  // console.log('url', req.url);
   var reader = null;
   res.template = Templar(req, res, templarOptions);
 
-  // var parsed = url.parse(req.url)
-  // var pathname = parsed.pathname
-  // var normalPathname = path.normalize(pathname).replace(/\\/g, '/');
+  var parsed = url.parse(req.url, true);
+  var pathname = parsed.pathname;
+  var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
+  var query = parsed.query;
 
   // var route = router.match(normalPathname);
   // if (!route) return res.error(404)
 
   // route.fn(req, res, config)
-  console.log('path.extname', path.extname(req.url));
 
   if (req.url === '/') {
     // getRecentReplies(function(err, groups) {
     getAllGroups(function(err, groups) {
       if (err) {
-        return console.log('error in getAllGroups', err);
+        return console.error('error in getAllGroups', err);
       } 
 
-      console.log(groups);
       res.template('index.ejs', { groups: groups })
     });
 
@@ -68,15 +64,15 @@ http.createServer(function (req, res) {
       res.end();
     });
     reader.on('error', function(err) {
-      console.log('error', err);
+      console.error('error', err);
       res.end();
     });
   } else {
     // if group exist - return array of topics
     // if not, return nil
-      console.log('looking for ', path.basename(req.url));
-
-      getGroupByName(path.basename(req.url) , function(err, group) {
+    
+    if (query && query.format && query.format === 'application/json') {
+      getGroupByName(normalPathName.substr(1) , function(err, group) {
         if (err) {
           res.end(null);
           return console.error('error', err);
@@ -88,10 +84,14 @@ http.createServer(function (req, res) {
             return console.error('error', err);
           } 
 
-          console.log('topics and groups', {group: group, topics: topics});
           res.end(JSON.stringify({group: group, topics: topics}));
         });
       });
+
+      return;
+    }
+  
+    console.log('if i am here it means the request is not ajax');
 
   };
 }).listen(config.port);

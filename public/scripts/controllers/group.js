@@ -4,8 +4,8 @@ angular.module('groupsApp')
   .controller('GroupCtrl', function ($scope, $http, $routeParams) {
     $scope.group = {};
     $scope.topics = [];
-    
-    $http({method: 'GET', url: $routeParams.group}).
+
+    $http({method: 'GET', url: $routeParams.group + '?format=application/json'}).
       success(function(data, status, headers, config) {
         console.log('data', data);
 
