@@ -5,31 +5,21 @@ Internal Google Groups website for YP.com
 
 ![groups](http://i.imgur.com/RyhDmVe.png)
 
-### Install Node
+### Tech Stack
 
-#### Debian / Ubuntu
+* Node.js
+* LevelDB
+* AngularJS
 
-    cd /tmp
-    git clone https://github.com/joyent/node.git
-    cd node
-    git checkout v0.10.4-release
-    ./configure
-    make
-    make install
-
-### Mac
-
-Get the pkg file from http://nodejs.org
-
-### Run
-
-    node server.js
-
-### Development
+### Setup
 
     npm install -g grunt-cli
     npm install
     grunt watch (compile .styl files into css)
+
+### Run
+
+    node server.js
 
 ### Test
 
