@@ -1,5 +1,10 @@
 ## groups.yp.com
 
+Internal Google Groups website for YP.com
+(My Recent Hackathon project)
+
+![groups](http://i.imgur.com/RyhDmVe.png)
+
 ### Install Node
 
 #### Debian / Ubuntu
