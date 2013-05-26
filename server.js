@@ -125,4 +125,5 @@ http.createServer(function (req, res) {
 
 }).listen(config.port);
 
-console.log('Groups server running in ' + environment  + ' environment on port ' + config.port);
+console.log('Server Listening - http://localhost:' + config.port + '. ' + environment + ' environment');
+
