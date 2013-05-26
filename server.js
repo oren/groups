@@ -62,7 +62,7 @@ http.createServer(function (req, res) {
     });
 
     return;
-  } 
+  };
 
   // ajax request to root ('/') or to a group ('/cat-videos')
   if (query && query.format && query.format === 'application/json') {
