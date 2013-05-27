@@ -53,7 +53,10 @@ http.createServer(function (req, res) {
 
   var isStatic = path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html';
 
-  if(isStatic) {
+  if (isStatic) { return getStatic(req, res) };
+  if (req.url === '/') { return getHome(req, res) };
+
+  function getStatic(req, res) {
     res.writeHead(200);
     var file = req.url.substr(1);
 
@@ -68,9 +71,20 @@ http.createServer(function (req, res) {
       // res.writeHead(404);
       res.end();
     });
+  }
 
-    return;
-  };
+  function getHome(req, res) {
+    getAllGroups(function(err, groups) {
+      if (err) {
+        // res.writeHead(404);
+        return console.error('error in getAllGroups', err);
+      };
+
+      res.template('index.ejs', { groups: groups })
+    });
+  }
+
+  return;
 
   // ajax request to root ('/') or to a group ('/cat-videos')
   if (query && query.format && query.format === 'application/json') {
