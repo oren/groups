@@ -17,7 +17,7 @@ insert('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, groupId) {
       return console.log('error', err);
     } 
 
-    insertTopic(groupId, 'crazy\\ cats', 'air boxing', '2', function(err, result) {
+    insertTopic(groupId, 'crazy cats', 'air boxing', '2', function(err, result) {
       if (err) {
         return console.log('error', err);
       } 

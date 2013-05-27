@@ -1,15 +1,14 @@
+'use strict';
+
 // npm packages
-var routes = require('routes');
+// var router = require('routes')();
 
-var Router = routes.Router;
-var Route = routes.Route;
-var router = new Router();
+module.exports = function() {
 
-module.exports = router
+});
 
-// static stuff serves out of the static folder.
-var static = require('./routes/static.js');
-router.addRoute('/static/*?', static);
-router.addRoute('/favicon.ico', static);
-
+// router.addRoute('/:group', require('./routes/group.js'));
+router.addRoute('/:group/:topic', function(){ console.log('topic') });
+router.addRoute('/:group*', function(){ console.log('group') });
+router.addRoute('/*', require('./routes/static.js'));
 router.addRoute('/', require('./routes/index.js'));

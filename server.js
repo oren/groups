@@ -1,15 +1,18 @@
 "use strict";
 
+process.title = 'groups website';
+
 // core modules
 var http = require('http');
 var fs = require('fs');
 var path = require("path");
 var url = require("url");
+var querystring = require("querystring");
 
 // npm packages
 var ejs = require('ejs');
 var Templar = require('templar');
-// var router = require("./router.js");
+// var router = require('./router.js');
 
 var templarOptions = { engine: ejs, folder: './templates' };
 
@@ -27,9 +30,8 @@ var getAllGroups = db.get('get-all-groups');
 var getGroupByName = db.get('get-group-by-name');
 var getTopics = db.get('get-topics');
 
-process.title = 'groups website';
-
 http.createServer(function (req, res) {
+
   var reader = null;
   res.template = Templar(req, res, templarOptions);
 
@@ -37,12 +39,17 @@ http.createServer(function (req, res) {
   var pathname = parsed.pathname;
   var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
   var query = parsed.query;
+  
+  // var params = querystring.parse(url.parse(req.url).search.slice(1))
+  // var params = url.parse(req.url);
+  // console.log('p', params);
 
+  // console.log(req.url);
 
-  // var route = router.match(normalPathname);
-  // if (!route) return res.error(404)
+  // var route = router.match(normalPathName);
+  // router.match(req.url).fn(req, res, config);
 
-  // route.fn(req, res, config)
+  // return;
 
   // assets
   if(path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html') {
@@ -126,4 +133,3 @@ http.createServer(function (req, res) {
 }).listen(config.port);
 
 console.log('Server Listening - http://localhost:' + config.port + '. ' + environment + ' environment');
-
