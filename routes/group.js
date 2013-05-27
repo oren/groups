@@ -2,11 +2,19 @@
 
 // if group exist - return array of topics
 // if not, return nil
-module.exports = function (req, res, config) {
-  console.log('boom');
-  var getGroupByName = config.db.get('get-group-by-name');
+//
 
-  getGroupByName(normalPathName.substr(1) , function(err, group) {
+var url = require('url');
+
+module.exports = function(req, res, config) {
+  var getGroupByName = config.db.get('get-group-by-name');
+  var getTopics = config.db.get('get-topics');
+
+  console.log('boom', url.parse(req.url));
+  var parsed = url.parse(req.url);
+  var groupName = parsed.pathname.substr(1);
+
+  getGroupByName(groupName , function(err, group) {
     if (err) {
       // res.writeHead(404);
       res.end(null);
@@ -20,8 +28,12 @@ module.exports = function (req, res, config) {
         return console.error('error', err);
       } 
 
-      res.writeHead(200, {'Content-Location': req.headers.host + normalPathName + '.json' });
-      res.end(JSON.stringify({group: group, topics: topics}));
+      if (parsed.query === 'format=application/json') {
+        res.writeHead(200, {'Content-Location': req.headers.host + groupName + '.json' });
+        res.end(JSON.stringify({group: group, topics: topics}));
+        return;
+      }
+
     });
   });
 };

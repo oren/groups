@@ -33,6 +33,8 @@ var getTopics = db.get('get-topics');
 http.createServer(function (req, res) {
   res.template = Templar(req, res, templarOptions);
   console.log(req.url);
+  console.log(router.match(req.url));
+
   router.match(req.url).fn(req, res, config);
   return;
 
@@ -52,8 +54,6 @@ http.createServer(function (req, res) {
 
       return;
     };
-
-    console.log('parsed', parsed);
 
     // if group exist - return array of topics
     // if not, return nil

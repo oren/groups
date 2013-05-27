@@ -7,6 +7,7 @@ var router = require('routes')();
 // my modules
 var getStatic = require('./routes/static.js');
 var getIndex = require('./routes/index.js');
+var getGroup = require('./routes/group.js');
 
 module.exports = router;
 
@@ -17,7 +18,7 @@ router.addRoute('/', getIndex);
 // /cats
 router.addRoute('/:group', function(){console.log('group')});
 // /cats/?format=application/json
-router.addRoute('/:group?format=application/json', function(){console.log('group json')});
+router.addRoute('/:group?format=application/json', getGroup);
 // /cats/cuteness
 router.addRoute('/:group/:topic', function(){console.log('topic')});
 // /cats/cuteness?format=application/json

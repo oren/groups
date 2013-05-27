@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = function(req, res, config) {
   var getAllGroups = config.db.get('get-all-groups');
 
