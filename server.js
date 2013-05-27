@@ -12,7 +12,7 @@ var querystring = require("querystring");
 // npm packages
 var ejs = require('ejs');
 var Templar = require('templar');
-// var router = require('./router.js');
+var router = require('./router.js');
 
 var templarOptions = { engine: ejs, folder: './templates' };
 
@@ -31,59 +31,9 @@ var getGroupByName = db.get('get-group-by-name');
 var getTopics = db.get('get-topics');
 
 http.createServer(function (req, res) {
-
-  var reader = null;
   res.template = Templar(req, res, templarOptions);
-
-  var parsed = url.parse(req.url, true);
-  var pathname = parsed.pathname;
-  var normalPathName = path.normalize(pathname).replace(/\\/g, '/');
-  var query = parsed.query;
-  
-  // var params = querystring.parse(url.parse(req.url).search.slice(1))
-  // var params = url.parse(req.url);
-  // console.log('p', params);
-
-  // console.log(req.url);
-
-  // var route = router.match(normalPathName);
-  // router.match(req.url).fn(req, res, config);
-
-  // return;
-
-  var isStatic = path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html';
-
-  if (isStatic) { return getStatic(req, res) };
-  if (req.url === '/') { return getHome(req, res) };
-
-  function getStatic(req, res) {
-    res.writeHead(200);
-    var file = req.url.substr(1);
-
-    reader = fs.createReadStream(req.url.substr(1));
-    reader.pipe(res);
-
-    reader.on('end', function() {
-      res.end();
-    });
-    reader.on('error', function(err) {
-      console.error('error', err);
-      // res.writeHead(404);
-      res.end();
-    });
-  }
-
-  function getHome(req, res) {
-    getAllGroups(function(err, groups) {
-      if (err) {
-        // res.writeHead(404);
-        return console.error('error in getAllGroups', err);
-      };
-
-      res.template('index.ejs', { groups: groups })
-    });
-  }
-
+  console.log(req.url);
+  router.match(req.url).fn(req, res, config);
   return;
 
   // ajax request to root ('/') or to a group ('/cat-videos')
