@@ -4,12 +4,16 @@
 var path = require('path');
 var router = require('routes')();
 
+// my modules
+var getStatic = require('./routes/static.js');
+var getIndex = require('./routes/index.js');
+
 module.exports = router;
 
 // /foo.jpg /foo.css /foo.png /public/js/foo.js
-router.addRoute('/*.*', function(){console.log('static')});
+router.addRoute('/*.*', getStatic);
 // /
-router.addRoute('/', function(){console.log('root')});
+router.addRoute('/', getIndex);
 // /cats
 router.addRoute('/:group', function(){console.log('group')});
 // /cats/?format=application/json
