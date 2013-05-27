@@ -9,7 +9,8 @@ var config = require('../config/' + environment + '.js');
 var db = config.db
 var insertGroup = db.get('insert-group');
 var insertTopic = db.get('insert-topic');
-var getTopic = db.get('get-topic');
+var insertReply = db.get('insert-reply');
+var getReplies = db.get('get-replies');
 var destroyDB = db.get('destroy-db');
 
 test('insert reply', function (t) {
