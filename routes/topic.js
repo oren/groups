@@ -1,7 +1,6 @@
 'use strict';
 
-// if group exist - return array of topics
-// if not, return nil
+// return a topic and all it's replies
 
 var url = require('url');
 
