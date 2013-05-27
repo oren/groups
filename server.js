@@ -51,8 +51,9 @@ http.createServer(function (req, res) {
 
   // return;
 
-  // assets
-  if(path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html') {
+  var isStatic = path.extname(req.url) === '.css' || path.extname(req.url) === '.jpg' || path.extname(req.url) === '.png' || path.extname(req.url) === '.js' || path.extname(req.url) === '.ico' || path.extname(req.url) === '.html';
+
+  if(isStatic) {
     res.writeHead(200);
     var file = req.url.substr(1);
 
