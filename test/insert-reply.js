@@ -12,20 +12,8 @@ var insertTopic = db.get('insert-topic');
 var getTopic = db.get('get-topic');
 var destroyDB = db.get('destroy-db');
 
-test('insert topic', function (t) {
+test('insert reply', function (t) {
   t.plan(1);  // you have to declare how many assertions are in your test
-
-  function getOneTopic(group, topic) {
-    getTopic(group + '!' + topic, function(err, result) {
-      if (err) {
-        return console.error('error', err);
-      } 
-
-      console.log('res', result);
-      destroyDB();
-      t.equal(result.title, 'dancing cats');  // truthy
-    });
-  }
 
   insertGroup('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, group) {
     if (err) {
@@ -37,7 +25,21 @@ test('insert topic', function (t) {
         return console.error('error', err);
       } 
 
-      getOneTopic(group, result.topicId);
+      insertReply(group, topic, 'awesome kitten', '2', function(err) {
+        if (err) {
+          return console.error('error', err);
+        } 
+
+        getReplies(groupId, topicId, function(err, replies){
+          if (err) {
+            return console.error('error', err);
+          } 
+
+          console.log('res', result);
+          destroyDB();
+          // t.equal(result.title, 'dancing cats');  // truthy
+        }); 
+      });
     });
   });
 });

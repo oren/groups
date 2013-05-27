@@ -1,6 +1,6 @@
 "use strict";
 
-// get a topic
+// get all replies of a topic based on group name and topic name
 
 module.exports = function (db, subs) {
   return function(topic, cb) {
