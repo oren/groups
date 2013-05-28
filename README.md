@@ -1,27 +1,32 @@
-## groups.yp.com
+# groups.yp.com
+
+## Index
+
+* [Tech Stack](#tech-stack)
+* [Run](#run)
+* [Test](#test)
+* [Deploy](#deploy)
+* [Servers](#servers)
+* [Misc](#misc)
 
 Internal Google Groups website for YP.com
 (My Recent Hackathon project)
 
 ![groups](http://i.imgur.com/RyhDmVe.png)
 
-### Tech Stack
+## Tech Stack
 
 * Node.js
 * LevelDB
 * AngularJS
 
-### Setup
 
-    npm install -g grunt-cli
+## Run
+
     npm install
-    grunt watch (compile .styl files into css)
+    npm start
 
-### Run
-
-    node server.js
-
-### Test
+## Test
 
     npm test
     
@@ -29,15 +34,17 @@ or
     
     node test/test-file.js
 
-### Deploy
+## Deploy
 
 bin/deploy prod
 
-### Servers
+## Servers
 
 groups.np.wc1.yellowpages.com
 
 vip - dev-groups.v.wc1.atti.com
+
+## Misc
 
 ### Install LevelDB on CentOS 5.8
 https://github.com/rvagg/node-leveldown/issues/33

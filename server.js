@@ -1,6 +1,6 @@
 "use strict";
 
-process.title = 'groups website';
+process.title = 'groups-website';
 
 // core modules
 var http = require('http');

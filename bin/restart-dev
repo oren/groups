@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# stylus and browserify
+node_modules/browserify/bin/cmd.js public/scripts/main.js > public/scripts/all.js
+node_modules/stylus/bin/stylus -c public/styles/main.styl
+
+# restart the server
+pgrep -f groups-website | xargs kill
+node server.js
