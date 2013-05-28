@@ -6,15 +6,18 @@ var levelup = require('levelup')
 
 var environment = process.env.NODE_ENV || 'test';
 var config = require('../config/' + environment + '.js');
-var db = config.db
+var db = config.db;
 var insertGroup = db.get('insert-group');
 var insertTopic = db.get('insert-topic');
 var insertReply = db.get('insert-reply');
 var getReplies = db.get('get-replies');
 var destroyDB = db.get('destroy-db');
 
+console.log(insertReply);
+console.log(getReplies);
+
 test('insert reply', function (t) {
-  t.plan(1);  // you have to declare how many assertions are in your test
+  t.plan(1);
 
   insertGroup('Cat Videos', 'EVERYONE LOVES CATS', '1', function(err, group) {
     if (err) {
@@ -31,6 +34,8 @@ test('insert reply', function (t) {
           return console.error('error', err);
         } 
 
+        console.log('here');
+
         getReplies(groupId, topicId, function(err, replies){
           if (err) {
             return console.error('error', err);
@@ -38,7 +43,7 @@ test('insert reply', function (t) {
 
           console.log('res', result);
           destroyDB();
-          // t.equal(result.title, 'dancing cats');  // truthy
+          t.equal(replies[0].content, 'awesome kitten');  // truthy
         }); 
       });
     });
